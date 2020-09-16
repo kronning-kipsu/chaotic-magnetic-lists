@@ -1,7 +1,18 @@
 # chaotic-magnetic-lists
 React application to play with all of the things
-* `npx create-react-app chaotic-magnetic-lists --use-npm --template redux-typescript`
-* `echo v12.18.0 > .node-version`
+
+## Roadmap
+
+### Done
+* Scaffold starter: `$ npx create-react-app chaotic-magnetic-lists --use-npm --template redux-typescript`
+* Setup node version: `$ echo v12.18.0 > .node-version`
+
+### Todo
+* Remove example code
+
+## Who to Contact?
+
+* Kyle Ronning
 
 ---
 
