@@ -3,9 +3,10 @@ import { render } from '@testing-library/react'
 import Task from './Task'
 
 test('renders List component', () => {
+    const taskName = "Task name"
     const { getByText } = render(
-        <Task taskName="Task name" />
+        <Task taskName={taskName} />
     )
 
-    expect(getByText(/Task name/)).toBeInTheDocument()
+    expect(getByText(taskName)).toBeInTheDocument()
 })
