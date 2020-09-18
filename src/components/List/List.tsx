@@ -1,10 +1,12 @@
 import React, { FunctionComponent } from 'react'
 import './List.css'
 
+import Task from '../Task/Task'
+
 const List: FunctionComponent = () => {
     return (
         <div className="list">
-            <div>I am list</div>
+            <Task taskName="I am a task in a list" />
         </div>
     )
 }

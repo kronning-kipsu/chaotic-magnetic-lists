@@ -1,4 +1,11 @@
 .list {
   background: lightgray;
+  box-sizing: border-box;
+  overflow-y: scroll;
+  padding: 2.0em 0.5em;
   width: 300px;
+}
+
+.list > * {
+  margin-top: 0.75em;
 }

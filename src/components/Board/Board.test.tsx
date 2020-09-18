@@ -7,5 +7,5 @@ test('renders Board component', () => {
         <Board />
     )
 
-    expect(getByText(/i am board/i)).toBeInTheDocument()
+    expect(getByText(/A chaotic magnetic list task/i)).toBeInTheDocument()
 })
