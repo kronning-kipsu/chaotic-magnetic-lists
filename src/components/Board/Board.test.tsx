@@ -1,15 +1,12 @@
 import React from 'react'
-import { DndProvider } from 'react-dnd'
-import { HTML5Backend } from 'react-dnd-html5-backend'
-import { render } from '@testing-library/react'
+import { render } from '../../utilities/testing-utils'
 import Board from './Board'
 
 test('renders Board component', () => {
-    const { getByText } = render(
-        <DndProvider backend={HTML5Backend}>
-            <Board />
-        </DndProvider>
+    const { container } = render(
+        <Board />
     )
 
-    expect(getByText(/A chaotic magnetic list task/i)).toBeInTheDocument()
+    expect(container.firstChild).not.toBeNull()
+    expect(container.firstChild).toBeEmpty()
 })

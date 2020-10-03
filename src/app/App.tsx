@@ -1,4 +1,6 @@
 import React, { FunctionComponent } from 'react'
+import { store } from './store'
+import { Provider } from 'react-redux'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import './App.css'
@@ -8,12 +10,14 @@ import List from '../components/List/List'
 
 const App: FunctionComponent = () => {
     return (
-        <DndProvider backend={HTML5Backend}>
-            <div className="app">
-                <Board />
-                <List />
-            </div>
-        </DndProvider>
+        <Provider store={store}>
+            <DndProvider backend={HTML5Backend}>
+                <div className="app">
+                    <Board />
+                    <List />
+                </div>
+            </DndProvider>
+        </Provider>
     )
 }
 

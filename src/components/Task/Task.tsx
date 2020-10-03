@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react'
-import { useDrag } from 'react-dnd'
+import {DragSourceMonitor, useDrag} from 'react-dnd'
 import './Task.css'
 
 interface Params {
@@ -8,13 +8,16 @@ interface Params {
 }
 
 const Task: FunctionComponent<Params> = ({ customStyle, taskName }) => {
-    const [collectedProps, drag] = useDrag({
-        item: { id: taskName + Math.random() , type: 'task' }
+    const [{ isDragging }, drag] = useDrag({
+        item: { id: taskName + Math.random() , type: 'task' },
+        collect: (monitor: DragSourceMonitor) => ({
+            isDragging: monitor.isDragging()
+        })
     })
     return (
         <div ref={drag}
              className="task"
-             style={ customStyle }>
+             style={ Object.assign({}, customStyle, {opacity: isDragging ? '0.0' : '1.0'}) }>
             { taskName }
         </div>
     )
