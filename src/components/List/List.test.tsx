@@ -8,5 +8,6 @@ test('renders List component', () => {
     )
 
     expect(container.firstChild).not.toBeNull()
-    expect(getByText(/I am a task in a list/i)).toBeInTheDocument()
+    expect(getByText(/First task/i)).toBeInTheDocument()
+    expect(getByText(/Second task/i)).toBeInTheDocument()
 })

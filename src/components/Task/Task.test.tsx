@@ -1,14 +1,20 @@
 import React from 'react'
-import { DndProvider } from 'react-dnd'
-import { HTML5Backend } from 'react-dnd-html5-backend'
 import { render } from '../../utilities/testing-utils'
 import Task from './Task'
 
 test('renders Task component', () => {
-    const taskName = "Task name"
+    const task = {
+        id: '1',
+        name: 'First task',
+        list: 'main',
+        seq: 0,
+        x: 200,
+        y: 150,
+        z: 100
+    }
     const { getByText } = render(
-        <Task taskName={taskName} />
+        <Task type='list' taskData={task} />
     )
 
-    expect(getByText(taskName)).toBeInTheDocument()
+    expect(getByText(task.name)).toBeInTheDocument()
 })
