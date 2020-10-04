@@ -8,13 +8,12 @@ import { store as realStore } from '../app/store'
 function render(
     ui: React.ReactElement,
     {
-        initialState = {},
         store = realStore,
         ...renderOptions
     } = {}
 ) {
     const Wrapper: FunctionComponent = ({ children }) => {
-        return <Provider store={store}><DndProvider backend={HTML5Backend}>{children}</DndProvider></Provider>
+        return <Provider store={ store }><DndProvider backend={ HTML5Backend }>{ children }</DndProvider></Provider>
     }
     return rtlRender(ui, { wrapper: Wrapper, ...renderOptions })
 }

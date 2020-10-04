@@ -8,11 +8,12 @@ import {
 import Task from '../Task/Task'
 
 const List: FunctionComponent = () => {
-    const tasks = useSelector(selectTasks)
+    const tasks = Object.assign([], useSelector(selectTasks))
+
     return (
         <div className='list'>
             {
-                tasks.sort((task: TaskData) => task.seq).map((task: TaskData) => (
+                tasks.sort((a: TaskData, b: TaskData) => a.seq - b.seq).map((task: TaskData) => (
                     <Task key={ task.id } type='list' taskData={task} />
                 ))
             }

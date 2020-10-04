@@ -8,5 +8,5 @@ test('renders Board component', () => {
     )
 
     expect(container.firstChild).not.toBeNull()
-    expect(container.firstChild).not.toBeEmpty()
+    expect(container.firstChild).toBeEmpty()
 })

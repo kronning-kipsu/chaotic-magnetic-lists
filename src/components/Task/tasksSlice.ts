@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { AppThunk, RootState } from '../../app/store'
+import TaskDataService from '../../services/TaskDataService'
 
 // Define task data
 export interface TaskData {
@@ -14,30 +15,14 @@ export interface TaskData {
 
 // Define tasks state
 interface TasksState {
+    loading: boolean
     tasks: TaskData[]
 }
 
 // Initial State
 const initialState: TasksState = {
-    tasks: [
-        {
-            id: '1',
-            name: 'First task',
-            list: 'main',
-            seq: 0,
-            x: 200,
-            y: 150,
-            z: 100
-        },
-        {
-            id: '2',
-            name: 'Second task',
-            list: 'main',
-            seq: 1,
-            x: 250,
-            y: 190,
-            z: 200
-        }]
+    loading: false,
+    tasks: []
 }
 
 // Create state slice
@@ -45,13 +30,25 @@ export const tasksSlice = createSlice({
     name: 'tasks',
     initialState,
     reducers: {
-
+        tasksLoadRequested: state => {
+            state.loading = true
+        },
+        tasksLoaded: (state, action: PayloadAction<TaskData[]>) => {
+            state.loading = false
+            state.tasks = action.payload
+        }
     }
 })
 
 // Export actions
+export const { tasksLoadRequested, tasksLoaded } = tasksSlice.actions
 
 // Export async actions
+export const loadTasksAsync = (): AppThunk => async dispatch => {
+    dispatch(tasksLoadRequested())
+    const tasks: TaskData[] = await new TaskDataService().getTasks()
+    dispatch(tasksLoaded(tasks))
+}
 
 // Export selectors
 export const selectTasks = (state: RootState) => state.tasks.tasks
